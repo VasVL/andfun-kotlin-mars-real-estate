@@ -48,8 +48,13 @@ class OverviewViewModel : ViewModel() {
     val properties: LiveData<List<MarsProperty>>
         get() = _properties
 
-    // TODO (05) Add a _navigateToSelectedProperty MutableLiveData externalized as LiveData
+    /**
+     * (05) Add a _navigateToSelectedProperty MutableLiveData externalized as LiveData
+     * */
+    private val _navigateToSelectedProperty = MutableLiveData<MarsProperty>()
 
+    val navigateToSelectedProperty: LiveData<MarsProperty>
+        get() = _navigateToSelectedProperty
 
 
     /**
@@ -77,7 +82,13 @@ class OverviewViewModel : ViewModel() {
     }
 
     /**
-     */
+     * (06) Add displayPropertyDetails and displayPropertyDetailsComplete methods
+     * */
+    fun displayPropertyDetails(marsProperty: MarsProperty) {
+        _navigateToSelectedProperty.value = marsProperty
+    }
 
-    // TODO (06) Add displayPropertyDetails and displayPropertyDetailsComplete methods
+    fun displayPropertyDetailsComplete() {
+        _navigateToSelectedProperty.value = null
+    }
 }
